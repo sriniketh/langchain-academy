@@ -14,7 +14,11 @@ def multiply(a: int, b: int) -> int:
     return a * b
 
 # LLM with bound tool
-llm = ChatOllama(model="llama3.2")
+llm = ChatOllama(
+    model="mistral-nemo",
+    # use host.docker.internal instead of localhost: https://github.com/langchain-ai/langgraph-studio/issues/112
+    base_url="http://host.docker.internal:11434"
+)
 llm_with_tools = llm.bind_tools([multiply])
 
 # Node
