@@ -31,10 +31,19 @@ def divide(a: int, b: int) -> float:
     """
     return a / b
 
-tools = [add, multiply, divide]
+def subtract(a: int, b: int) -> float:
+    """Subtract b from a.
+
+    Args:
+        a: first int
+        b: second int
+    """
+    return a - b
+
+tools = [add, multiply, divide, subtract]
 
 # Define LLM with bound tools
-llm = ChatOllama(model="llama3.2")
+llm = ChatOllama(model="mistral-nemo", base_url="http://host.docker.internal:11434")
 llm_with_tools = llm.bind_tools(tools)
 
 # System message
